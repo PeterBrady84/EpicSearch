@@ -1,0 +1,239 @@
+<!-- <?xml version='1.0' encoding='UTF-8' ?>  -->
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" -->
+<!--       xmlns:ui="http://java.sun.com/jsf/facelets" -->
+<!--       xmlns:f="http://java.sun.com/jsf/core" -->
+<!--       xmlns:h="http://java.sun.com/jsf/html" -->
+<!--       xmlns:p="http://primefaces.org/ui" -->
+<!--       xmlns:sec="http://www.springframework.org/security/facelets/tags" -->
+<!--       xmlns:pe="http://primefaces.org/ui/extensions" > -->
+
+<!--     <h:head> -->
+<!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+<!--         <link href="./resources/restrict/css/semeru.css" rel="stylesheet" type="text/css" /> -->
+<!--         <link href="./resources/restrict/images/favicon.png" rel="shortcut icon" type="image/x-icon" /> -->
+<!--         <title>Home</title> -->
+<!--     </h:head> -->
+    
+<!--     <h:body id="content"> -->
+<!--     <div id="topo" /> -->
+<!--     <a href="/resultsUr.faces" /> -->
+<!-- 		<br /> -->
+<!-- 	<div id="container" style="text-align: center"> -->
+<!--     <div style="display: inline-block;" /> -->
+<!-- 		<p:commandLink onclick="PF('modalLogin').show();">Login</p:commandLink>  |   -->
+<!-- 	<!-- 	<h:outputLink value="login.xhtml" >Login Dialogue</h:outputLink>  | --> -->
+<!-- 		<p:commandLink onclick="PF('dlg2').show();">Register</p:commandLink> -->
+<!-- 		<br /> -->
+<!-- 		<br /> -->
+<!-- 		<br /> -->
+<!-- 		<h:form id="search"> -->
+<!-- 		<div style="display: inline-block;"> -->
+<!-- 			<p:outputLabel for="searchQuery" value="Epic Search Engine" /> -->
+<!-- 			<br /> -->
+<!-- 			<p:inputText id="searchQuery" value="#{searchController.query}"/> -->
+<!-- 			<br /> -->
+<!-- 			<p:commandButton id="searchButton" value="Search" action="#{searchController.searchQuery}" type="submit" -->
+<!-- 				onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()" /> -->
+<!-- 			<br /> -->
+<!-- 		</div> -->
+<!-- 		</h:form> -->
+<!-- 		<br /> -->
+<!-- 		<br /> -->
+<!-- 		<div style="display: inline-block;" > -->
+<!-- 			<h2 style="margin-top: 0px">Select Search Engines</h2> -->
+<!-- <!-- 			<p:panelGrid columns="2" > --> -->
+<!-- <!-- 				<h:outputText value="Google" /> --> -->
+<!-- <!-- 				<p:selectBooleanCheckbox value="#{searchController.searchSelected[0]}" /> --> -->
+<!-- <!-- 				<h:outputText value="Yahoo" /> --> -->
+<!-- <!-- 				<p:selectBooleanCheckbox value="#{searchController.searchSelected[1]}" /> --> -->
+<!-- <!-- 				<h:outputText value="Bing" /> --> -->
+<!-- <!-- 				<p:selectBooleanCheckbox value="#{searchController.searchSelected[2]}" /> --> -->
+<!-- <!-- 				<h:outputText value="Duck Duck Go" /> --> -->
+<!-- <!-- 				<p:selectBooleanCheckbox value="#{searchController.searchSelected[3]}" /> --> -->
+<!-- <!-- 			</p:panelGrid> --> -->
+<!-- 				<p:panelGrid id="CheckboxId" columns="2" style="width:490px"> -->
+<!-- 					<h:outputText value="Google" /> -->
+<!-- 					<p:selectBooleanCheckbox id="select0" value="#{searchController.searchSelected[0]}" /> -->
+<!-- 					<h:outputText value="Yahoo" /> -->
+<!-- 					<p:selectBooleanCheckbox id="select1" value="#{searchController.searchSelected[1]}" /> -->
+<!-- 					<h:outputText value="Bing" /> -->
+<!-- 					<p:selectBooleanCheckbox id="select2" value="#{searchController.searchSelected[2]}" /> -->
+<!-- 					<h:outputText value="Duck Duck Go" /> -->
+<!-- 					<p:selectBooleanCheckbox id="select3" value="#{searchController.searchSelected[3]}" /> -->
+<!-- 				</p:panelGrid> -->
+<!-- 			<br /> -->
+<!-- 		</div> -->
+		
+<!-- 		<p:dialog id="dialog" header="Login" widgetVar="modalLogin" modal="true" > -->
+<!-- <!-- 		position="center" showEffect="slide" draggable="false" resizable="false" > --> -->
+<!-- 			<form action="j_spring_security_check" method="post" id="login"> -->
+<!-- 			<h:panelGrid columns="2"> -->
+<!-- 		    	<h:outputLabel for="j_username" value="Username  or Email :" /> -->
+<!-- 		    	<h:inputText id="j_username" required="true" /> -->
+<!-- 		    	<h:outputLabel for="j_password" value="Password :" /> -->
+<!-- 		    	<h:inputSecret id="j_password" required="true" /> -->
+<!-- 		    	<f:facet name="footer" > -->
+<!-- 			    	<h:commandButton value="Submit" icon="ui-icon-check"/>	    	 -->
+<!-- 			    	<h:commandButton value="Cancel" onclick="PF('modalLogin').hide()"/> -->
+<!-- 		    	</f:facet> -->
+<!-- 		    </h:panelGrid> -->
+<!-- 		    </form> -->
+<!-- 		</p:dialog> -->
+		
+<!-- <!--             <h:panelGrid columns="2" cellpadding="3"> --> -->
+<!-- <!--                 <h:outputLabel for="j_username" value="User: " />  --> -->
+<!-- <!--                 <h:inputText id="j_username" required="true"/> --> -->
+<!-- <!--                 <h:outputLabel for="j_password" value="Password: " /> --> -->
+<!-- <!--                 <h:inputSecret id="j_password" required="true"/> --> -->
+<!-- <!--                 <h:commandButton value="Submit" icon="ui-icon-check"/> --> -->
+<!-- <!--             </h:panelGrid> --> -->
+
+<!-- 		<p:dialog header="Register" widgetVar="dlg2" modal="true"> -->
+<!-- 		<h:form> -->
+<!-- 			<p:panelGrid columns="2"> -->
+<!-- 				<h:outputLabel value="Enter Details :"/> -->
+<!-- 				<h:inputHidden id="personId" value="#{personController.person.personId}"/> -->
+				
+<!-- 				<h:outputLabel for="personFirstName" value="First Name.:"/> -->
+<!-- 				<p:inputText id="personFirstName" style="width:200px" value="#{personController.person.firstName}" -->
+<!-- 					required="true" requiredMessage="Field [First Name] is required" -->
+<!--                     onkeyup="this.value = this.value.toUpperCase()"/> -->
+                
+<!--                 <h:outputLabel for="personLastName" value="Last Name.:"/> -->
+<!--                 <p:inputText id="personLastName" style="width:200px" value="#{personController.person.lastName}" -->
+<!--                 	required="true" requiredMessage="Field [Last Name] is required" -->
+<!--                 	onkeyup="this.value = this.value.toUpperCase()"/> -->
+                
+<!--                 <h:outputLabel for="dateOfBirth" value="Date of Birth.:"/> -->
+<!--                 <p:calendar id="dateOfBirth" size="17" value="#{personController.person.dateOfBirth}" -->
+<!--                 	required="true" requiredMessage="Field [Date of Birth] is required" -->
+<!--                 	navigator="true" effect="explode" pattern="dd - MMM - yyyy"/> -->
+                
+<!--                 <h:outputLabel for="email" value="E-mail.:"/> -->
+<!--                 <p:inputText id="email" style="width:200px" value="#{personController.person.email}" -->
+<!--                 	required="true" requiredMessage="Field [E-mail] is required"> -->
+<!--                 	<f:validator validatorId="emailValidator"/> -->
+<!--                 </p:inputText> -->
+                
+<!--                 <h:outputLabel for="username" value="Username.:"/> -->
+<!--                 <p:inputText id="username" style="width:200px" value="#{personController.person.login}"/> -->
+                
+<!--                 <h:outputLabel for="password" value="Password.:" /> -->
+<!--                 <p:password id="password" style="width:200px" maxlength="22" promptLabel="Type your Password" value="#{personController.confirmPassword}" -->
+<!--                 	weakLabel="Weak Password" goodLabel="Good Password" strongLabel="Strong Password" feedback="true"/> -->
+                
+<!--                 <h:outputLabel for="passwordconf2" value="Confirm Password.:"/> -->
+<!--                 <p:password id="passwordconf2" style="width:200px" value="#{personController.person.password}" maxlength="22" -->
+<!--                 	promptLabel="Confirm your Password" weakLabel="Weak Password" validator="passwordValidator" -->
+<!--                 	goodLabel="Good Password" strongLabel="Strong Password" feedback="true"> -->
+<!--                 </p:password> -->
+                
+<!-- 		    	<f:facet name="footer" > -->
+<!-- 		    		<p:commandButton value="Save" action="#{personController.addPerson}" -->
+<!--                                      icon="ui-icon ui-icon-disk" update="@form" -->
+<!--                                      oncomplete="PF('dlg2').hide()" /> -->
+<!--                     <p:commandButton value="Cancel" onclick="PF('dlg2').hide()" icon="ui-icon ui-icon-close"/> -->
+<!-- <!-- 			    	<p:commandButton value="Submit" action="login.xhtml?faces-redirect=true" />	    	 --> -->
+<!-- <!-- 			    	<p:commandButton value="Cancel" onclick="PF('dlg2').hide()"/> --> -->
+<!-- 		    	</f:facet>	    	 -->
+<!-- 		    </p:panelGrid> -->
+<!-- 		    </h:form> -->
+<!-- 		</p:dialog> -->
+		
+<!-- 		<pe:blockUI widgetVar="blockUIWidget"> -->
+<!-- 			<h:panelGrid columns="2"> -->
+<!-- 				<font color="#002660"><br />Searching... Please Wait</font> -->
+<!-- 				<p:graphicImage name="/restrict/images/ajax-loader.gif" /> -->
+<!-- 			</h:panelGrid> -->
+<!-- 		</pe:blockUI> -->
+<!-- 		</div> -->
+		
+<!-- 		<div id="footer" > -->
+<!--             <div id="copyright">                   -->
+<!--                 <a href="">Epic Search Engine - &copy; Copyright Peter Brady 2016</a> -->
+<!--             </div> -->
+<!--         </div> div end footer -->
+        
+<!-- 	</h:body> -->
+<!-- </html> -->
+
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="./resources/main.xhtml" >
+	
+	<h:head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link href="./resources/css/styleSheet.css" rel="stylesheet" type="text/css" />
+	    <link href="./resources/images/favicon.png" rel="shortcut icon" type="image/x-icon" />
+	    <title>Home</title>
+	</h:head>
+	
+	<ui:define name="loginOut">
+		<h:form>
+			<p:outputLabel value ="" />
+			<p:commandLink onclick="PF('modalLogin').show();">Login</p:commandLink>
+		</h:form>
+	</ui:define>
+	
+	 <ui:define name="content">
+	 	<h:form>
+			<div style="display: inline-block;">
+				<p:outputLabel for="searchQuery" value="Epic Search Engine" />
+				<br />
+				<p:inputText id="searchQuery" value="#{search.query}"/>
+				<br />
+				<p:commandButton id="searchButton" value="Search" action="#{search.searchQuery}" type="submit"
+					onstart="PF('blockUIWidget').block()"  /><br />
+			</div><br /><br />
+			
+			<div style="display: inline-block;" >
+				<h2 style="margin-top: 0px">Select Search Engines</h2>
+				<p:panelGrid id="CheckboxId" columns="2" style="width:490px">
+					<h:outputText value="Google" />
+					<p:selectBooleanCheckbox id="select0"
+						value="#{search.searchSelected[0]}" />
+					<h:outputText value="Yahoo" />
+					<p:selectBooleanCheckbox id="select1"
+						value="#{search.searchSelected[1]}" />
+					<h:outputText value="Bing" />
+					<p:selectBooleanCheckbox id="select2"
+						value="#{search.searchSelected[2]}" />
+					<h:outputText value="Duck Duck Go" />
+					<p:selectBooleanCheckbox id="select3"
+						value="#{search.searchSelected[3]}" />
+				</p:panelGrid>
+			</div>
+		</h:form>
+			
+		<p:dialog id="dialog" header="Login" widgetVar="modalLogin" modal="true" 
+			style="width:300px;">
+<!-- 		position="center" showEffect="slide" draggable="false" resizable="false" > -->
+			<h:form>
+			<h:panelGrid id="loginForm" columns="2" style="width:300px;">
+		    <p:outputLabel for="username" value="Username" />
+			<p:inputText id="username" value="#{login.user}" required="true" requiredMessage="Enter a username" />
+			<p:outputLabel value=""/>
+			<p:message for="username" display="text" />
+			
+			
+			<p:outputLabel for="password" value="Password" />
+			<p:password id="password" value="#{login.pwd}" required="true" requiredMessage="Enter a password" />
+			<p:outputLabel />
+			<p:message for="password" display="texticon" />
+			
+			<p:commandButton action="#{login.validateUsernamePassword}" update="loginForm"
+				value="Login" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('modalLogin').show()"/>
+			<p:commandButton value="Cancel" onclick="PF('modalLogin').hide()"/>
+			</h:panelGrid>
+			<p:messages id="msgs" />
+		    
+		    </h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

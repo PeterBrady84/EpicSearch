@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tasks">
+        <h:form>
+            <p:growl id="msg0"/>
+            <p:dataTable id="idTable" var="person" value="#{personController.persons}"
+                         paginator="true" rows="10" emptyMessage="No records found"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+
+                <f:facet name="header">List of Persons</f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:outputText value="#{person.firstName}"/>
+                </p:column>
+				
+				<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:outputText value="#{person.lastName}"/>
+                </p:column>
+				
+				<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Date of Birth"/>
+                    </f:facet>
+                    <h:outputText value="#{person.dateOfBirth}" >
+                    	<f:convertDateTime pattern="dd - MMM - yyyy" />
+                    </h:outputText>                    
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:outputText value="#{person.email}"/>
+                </p:column>
+				
+				<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Username"/>
+                    </f:facet>
+                    <h:outputText value="#{person.login}"/>
+                </p:column>
+
+<!--                 <p:column> -->
+<!--                     <f:facet name="header"> -->
+<!--                         <h:outputText value="Site"/> -->
+<!--                     </f:facet> -->
+<!--                     <h:outputText value="#{person.personSite.site.name}"/> -->
+<!--                 </p:column> -->
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Actions"/>
+                    </f:facet>
+                    <p:commandButton action="#{personController.editPerson}"
+                        value="Edit" icon="ui-icon ui-icon-pencil"
+                        update="@form" ajax="false">
+                        <f:setPropertyActionListener value="#{person}" target="#{personController.person}"/>
+                        <f:setPropertyActionListener value="#{person.personId}" target="#{personController.person.personId}"/>
+<!--                         <f:setPropertyActionListener value="#{person.personSite}" target="#{personController.personSite}"/>      -->
+<!--                         <f:setPropertyActionListener value="#{person.personSite.site.siteId}" target="#{personController.personSite.site.siteId}"/> -->
+                    </p:commandButton>
+                    
+                    <p:commandButton value="Cancel" action="#{personController.implPerson}"
+                                     icon="ui-icon ui-icon-close" update="@form"/>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

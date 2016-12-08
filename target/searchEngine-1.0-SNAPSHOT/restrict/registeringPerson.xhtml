@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tasks">
+        <p:fieldset legend="Register Person">
+
+            <br/>
+            <h:form>
+                <p:wizard nextLabel="Next Tab" backLabel="Previous Tab">
+                    <p:tab title="Basic Information" id="personalInfo">
+                        <p:panel header="Person Basic Information">
+                            <p:growl id="msg0"/>
+                            <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+
+                                <h:outputLabel/>
+                                <h:inputHidden id="personId" value="#{personController.person.personId}"/> 
+
+                                <h:outputLabel for="personFirstName" value="First Name.:"/>
+                                <p:inputText id="personFirstName" size="40" value="#{personController.person.firstName}"
+                                             required="true" requiredMessage="Field [First Name] is required"
+                                             onkeyup="this.value = this.value.toUpperCase()"/>
+
+                                <h:outputLabel for="personLastName" value="Last Name.:"/>
+                                <p:inputText id="personLastName" size="40" value="#{personController.person.lastName}"
+                                             required="true" requiredMessage="Field [Last Name] is required"
+                                             onkeyup="this.value = this.value.toUpperCase()"/>
+
+                                <h:outputLabel for="dateOfBirth" value="Date of Birth.:"/>
+                                <p:calendar id="dateOfBirth" value="#{personController.person.dateOfBirth}"
+                                            required="true" requiredMessage="Field [Date of Birth] is required"
+                                            locale="pt_BR" navigator="true" effect="explode" pattern="dd/MM/yyyy"/>
+
+                                <h:outputLabel for="email" value="E-mail.:"/>
+                                <p:inputText id="email" size="40" value="#{personController.person.email}"
+                                             required="true" requiredMessage="Field [E-mail] is required">
+									<f:validator validatorId="emailValidator"/>
+                                </p:inputText>
+
+                                <h:outputLabel for="personname" value="Person Name.:"/>
+                                <p:inputText id="personname" value="#{personController.person.login}" size="30"/>
+
+                                <h:outputLabel for="password" value="Password.:" />
+                                <p:password id="password" size="30" maxlength="22" promptLabel="Type your Password" value="#{personController.confirmPassword}"
+                                            weakLabel="Weak Password" goodLabel="Good Password" strongLabel="Strong Password" feedback="true"/> 
+
+                                <h:outputLabel for="passwordconf2" value="Confirm Password.:"/>
+                                <p:password id="passwordconf2" size="30" value="#{personController.person.password}" maxlength="22"   
+                                            promptLabel="Confirm your Password" weakLabel="Weak Password" validator="passwordValidator"
+                                            goodLabel="Good Password" strongLabel="Strong Password" feedback="true">
+                                </p:password>  
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab title="Address Information" id="addressInfo">
+                        <p:panel header="Person Site Information">
+                            <p:growl id="msg1"/>
+                            <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid1">
+
+                                <h:outputLabel for="site" value="Site.:" />
+                                <p:selectOneMenu id="site" value="#{personController.personSite.site.siteId}">
+                                    <f:selectItems value="#{siteSupport.sites}" var="site"
+                                                   itemValue="#{site.siteId}" itemLabel="#{site.name}"/>
+                                </p:selectOneMenu>
+
+                                <p:panel>
+                                    <p:commandButton value="Save" action="#{personController.addPerson}"
+                                                     icon="ui-icon ui-icon-disk" update="@form"/>
+                                    <p:commandButton value="Cancel" actionListener="#{personController.implPerson}" 
+                                                     icon="ui-icon ui-icon-close" update="@form"/>
+                                </p:panel>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>

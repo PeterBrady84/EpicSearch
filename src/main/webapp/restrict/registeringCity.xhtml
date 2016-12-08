@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"                
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tasks">
+        <p:fieldset legend="Register Sites">
+            <br/>
+            <p:tabView id="tbv1" dynamic="true" cache="true">
+                <p:tab title="Site">
+                    <h:form prependId="false" id="formSite">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            
+                            <h:outputLabel/>
+                            <h:inputHidden id="siteid" value="#{siteController.site.siteId}"/> 
+                            
+                            <h:outputLabel for="sitename" value="Name.:"/>
+                            <p:inputText id="sitename" size="40" value="#{siteController.site.name}"
+                                onkeyup="this.value = this.value.toUpperCase()" required="true"
+                                requiredMessage="The [Name] field is required."/>
+								
+							<h:outputLabel for="siteurl" value="Url.:"/>
+                            <p:inputText id="siteurl" size="40" value="#{siteController.site.url}"
+                                required="true" requiredMessage="The [Url] field is required."/>
+								
+							<h:outputLabel for="siteactive" value="Active.:"/>
+                            <p:booleanCheckbox id="siteactive" size="40" value="#{siteController.site.active}" />
+                            
+                            <p:panel>
+                                <p:commandButton value="Save" action="#{siteController.addSite}"
+                                    icon="ui-icon ui-icon-disk" update="@form :formtable"/>
+                                <p:commandButton value="Cancel" actionListener="#{siteController.implSite}" 
+                                    icon="ui-icon ui-icon-close" update="@form"/>
+                            </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+            
+            <h:form id="formtable">
+                <p:growl id="msg1"/>
+                <p:dataTable id="idTable" var="site" value="#{siteController.sites}"
+                             paginator="true" rows="10" emptyMessage="No records found"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                
+                    <f:facet name="header">List of Sites</f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{site.name}"/>
+                    </p:column>
+					
+					<p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Url"/>
+                        </f:facet>
+                        <h:outputText value="#{site.url}"/>
+                    </p:column>
+					
+					<p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Active"/>
+                        </f:facet>
+                        <h:outputText value="#{site.active}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Actions"/>
+                        </f:facet>
+                        <p:commandButton value="Edit" icon="ui-icon ui-icon-pencil"
+                                process="@this" update=":tbv1:formSite">
+                            <f:setPropertyActionListener target="#{siteController.site}"
+                                value="#{site}"/>
+                        </p:commandButton>
+                        <p:commandButton value="Delete" action="#{siteController.deleteSite}"
+                                icon="ui-icon ui-icon-close" update="@form">
+                            <f:setPropertyActionListener target="#{siteController.site}"
+                                value="#{site}"/>
+                        </p:commandButton>
+                        
+                    </p:column>
+                    
+                </p:dataTable>
+                
+            </h:form>
+            
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>

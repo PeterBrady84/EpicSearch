@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/security
+                            http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+        <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/login.faces" access="permitAll" />
+        <intercept-url pattern="/restrict/**" access="isAuthenticated()" />
+        <intercept-url pattern="/public/**" access="permitAll"/>
+        
+        <form-login login-page="/login.faces" authentication-failure-url="/login.faces?erro=true"
+                    default-target-url="/restrict/home.faces"/>		
+        <access-denied-handler error-page="/accessdenied.faces" />
+    </http>                
+
+    <!-- THE PATTERN DESIGN DO ACCORDINGLY -->  
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder hash="sha"/>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT Login, Password, 'true' as enable FROM person WHERE Login=?"
+                               authorities-by-username-query="SELECT Login as username, Permission as authority FROM person WHERE Login=?"/>               
+        </authentication-provider>
+    </authentication-manager>
+    
+    <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+        <b:property name="url" value="jdbc:mysql://localhost:3306/searchEngine" />
+        <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <b:property name="username" value="root" />
+        <b:property name="password" value="root" />
+    </b:bean>
+    
+    <!-- BUT THERE ARE OTHER WAYS 2 SE DO IT -->
+    <!-- YOU CAN CUSTOMIZE THE AUTHENTICATION PROVIDER -->
+    <!--    <b:bean id="customAuthenticationProvider" class="br.com.peter.security.CustomAuthenticationProvider"></b:bean> 
+    <authentication-manager> 
+        <authentication-provider ref="customAuthenticationProvider"/> 
+    </authentication-manager>     -->
+    
+    <!-- OR YOU CAN ALSO CUSTOMIZE THE USER DETAILS -->
+<!--    <b:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+    <authentication-manager>
+        <authentication-provider user-service-ref="peterUserService" >
+            <password-encoder hash="sha"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <b:bean id="peterUserService" class="br.com.peter.security.UserServiceImpl"/>-->
+</b:beans>    
